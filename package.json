@@ -12,7 +12,10 @@
 	"license": "MIT",
 	"dependencies": {
 		"fastify": "^4.13.0",
-		"prisma": "^4.10.1"
+		"prisma": "^4.10.1",
+		"reflect-metadata": "^0.1.13",
+		"tsyringe": "^4.7.0",
+		"zod": "^3.20.6"
 	},
 	"devDependencies": {
 		"@prisma/client": "^4.10.1",
