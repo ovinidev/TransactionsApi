@@ -4,16 +4,17 @@ import {
 	TransactionRepository,
 } from "../../../../app/repositories/TransactionRepository";
 import { prisma } from "../services/prismaClient";
-import { CreateTransactionDto } from "../../../http/dtos/CreateTransaction";
 import { PrismaTransactionMapper } from "../mappers/PrismaTransactionMapper";
 
 export class PrismaTransactionRepository implements TransactionRepository {
-	async create(transaction: CreateTransactionDto): Promise<void> {
+	async create(transaction: Transaction): Promise<Transaction> {
 		const raw = PrismaTransactionMapper.toPrisma(transaction);
 
-		await prisma.transaction.create({
+		const transactionCreated = await prisma.transaction.create({
 			data: raw,
 		});
+
+		return PrismaTransactionMapper.toDomain(transactionCreated);
 	}
 
 	async findAll(sessionId: string): Promise<Transaction[]> {
@@ -51,13 +52,5 @@ export class PrismaTransactionRepository implements TransactionRepository {
 		});
 
 		return summaryTransactionsAmount._sum;
-	}
-
-	async delete(id: string): Promise<void> {
-		await prisma.transaction.delete({
-			where: {
-				id,
-			},
-		});
 	}
 }

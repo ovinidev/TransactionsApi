@@ -1,8 +1,9 @@
 import { randomUUID } from "crypto";
 import { container } from "tsyringe";
 import { z } from "zod";
-import { CreateTransactionUseCase } from "../../../app/useCases/CreateTransactionUseCase copy";
+import { CreateTransactionUseCase } from "../../../app/useCases/CreateTransaction/CreateTransactionUseCase";
 import { handleError } from "../../errors/handleError";
+import { TransactionViewModel } from "../viewModels/TransactionViewModel";
 
 export class CreateTransactionController {
 	async handle(req: any, res: any) {
@@ -23,8 +24,8 @@ export class CreateTransactionController {
 			);
 
 			const createTransactionBodySchema = z.object({
-				title: z.string({ required_error: "Title is required" }),
-				amount: z.number({ required_error: "Amount is required" }),
+				title: z.string({ required_error: "Title is required" }).min(1),
+				amount: z.number({ required_error: "Amount is required" }).min(1),
 				type: z.union([z.literal("credit"), z.literal("debit")]),
 			});
 
@@ -32,18 +33,14 @@ export class CreateTransactionController {
 				req.body,
 			);
 
-			const amountBasedOnType = type === "credit" ? amount : amount * -1;
-
-			await createTransactionUseCase.execute({
+			const transaction = await createTransactionUseCase.execute({
 				title,
-				amount: amountBasedOnType,
+				amount,
 				type,
 				sessionId,
 			});
 
-			return res
-				.status(201)
-				.send({ message: "Transaction created", code: 201 });
+			return TransactionViewModel.toHTTP(transaction);
 		} catch (err) {
 			handleError({ res, err });
 		}

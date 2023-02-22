@@ -1,14 +1,13 @@
 import { Transaction } from "../../../../app/entities/Transaction";
 import { Transaction as RawTransaction } from "@prisma/client";
-import { CreateTransactionDto } from "../../../http/dtos/CreateTransaction";
 
 export class PrismaTransactionMapper {
-	static toPrisma(transaction: CreateTransactionDto) {
+	static toPrisma(transaction: Transaction) {
 		return {
-			title: transaction.title,
-			amount: transaction.amount,
-			type: transaction.type,
-			session_id: transaction.sessionId,
+			title: transaction.props.title,
+			amount: transaction.props.amount,
+			type: transaction.props.type,
+			session_id: transaction.props.sessionId,
 		};
 	}
 

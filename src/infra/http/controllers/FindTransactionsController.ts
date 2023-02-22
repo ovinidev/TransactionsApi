@@ -1,6 +1,6 @@
 import { FastifyReply } from "fastify";
 import { container } from "tsyringe";
-import { FindTransactionsUseCase } from "../../../app/useCases/FindTransactionsUseCase";
+import { FindTransactionsUseCase } from "../../../app/useCases/FindTransactions/FindTransactionsUseCase";
 import { handleError } from "../../errors/handleError";
 import { TransactionViewModel } from "../viewModels/TransactionViewModel";
 

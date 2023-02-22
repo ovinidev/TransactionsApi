@@ -1,6 +1,6 @@
 import { FastifyReply } from "fastify";
 import { container } from "tsyringe";
-import { FindTransactionsSummaryUseCase } from "../../../app/useCases/FindTransactionsSummaryUseCase";
+import { FindTransactionsSummaryUseCase } from "../../../app/useCases/FindTransactionsSummary/FindTransactionsSummaryUseCase";
 import { handleError } from "../../errors/handleError";
 
 export class FindTransactionsSummaryController {

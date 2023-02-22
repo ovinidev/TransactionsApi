@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "server.ts",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "tsx watch src/server.ts"
+		"test": "vitest",
+		"coverage": "vitest run --coverage",
+		"dev": "tsx watch src/infra/http/server.ts"
 	},
 	"keywords": [],
 	"author": "",
@@ -21,10 +22,13 @@
 	"devDependencies": {
 		"@prisma/client": "^4.10.1",
 		"@types/node": "^18.14.0",
+		"@types/supertest": "^2.0.12",
 		"@typescript-eslint/eslint-plugin": "^5.52.0",
 		"@typescript-eslint/parser": "^5.52.0",
 		"eslint": "^8.34.0",
+		"supertest": "^6.3.3",
 		"tsx": "^3.12.3",
-		"typescript": "^4.9.5"
+		"typescript": "^4.9.5",
+		"vitest": "^0.28.5"
 	}
 }

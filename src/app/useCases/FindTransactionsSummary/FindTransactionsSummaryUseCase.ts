@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { TransactionRepository } from "../repositories/TransactionRepository";
+import { TransactionRepository } from "../../repositories/TransactionRepository";
 
 @injectable()
 export class FindTransactionsSummaryUseCase {

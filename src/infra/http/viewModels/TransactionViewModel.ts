@@ -2,8 +2,8 @@ import { Transaction } from "../../../app/entities/Transaction";
 
 export interface TransactionViewModelProps {
 	title: string;
-	createdAt: Date;
-	id: string;
+	createdAt?: Date;
+	id?: string;
 	amount: number;
 	type: string;
 	sessionId: string;

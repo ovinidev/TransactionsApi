@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../errors/appError";
-import { TransactionRepository } from "../repositories/TransactionRepository";
+import { AppError } from "../../errors/appError";
+import { TransactionRepository } from "../../repositories/TransactionRepository";
 
 @injectable()
 export class FindTransactionByIdUseCase {

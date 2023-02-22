@@ -3,7 +3,7 @@ export interface TransactionProps {
 	title: string;
 	amount: number;
 	type: string;
-	createdAt: Date;
+	createdAt?: Date;
 	sessionId: string;
 }
 
@@ -12,6 +12,10 @@ export class Transaction {
 
 	constructor(props: TransactionProps) {
 		this.props = props;
+	}
+
+	public get id(): string {
+		return this.props.id;
 	}
 
 	public get title(): string {
@@ -36,5 +40,9 @@ export class Transaction {
 
 	public set type(type: string) {
 		this.props.type = type;
+	}
+
+	public get sessionId(): string {
+		return this.props.sessionId;
 	}
 }
