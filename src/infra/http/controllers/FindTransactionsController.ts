@@ -14,8 +14,8 @@ export class FindTransactionsController {
 			return transactions.map((transaction) => {
 				return TransactionViewModel.toHTTP(transaction);
 			});
-		} catch {
-			res.status(400).send("error");
+		} catch (err: any) {
+			res.send(err.message);
 		}
 	}
 }

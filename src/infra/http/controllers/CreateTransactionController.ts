@@ -10,15 +10,27 @@ export class CreateTransactionController {
 				CreateTransactionUseCase,
 			);
 
-			const createTransactionBody = z.object({
+			const createTransactionBodySchema = z.object({
 				title: z.string({ required_error: "Title is required" }),
+				amount: z.number({ required_error: "Amount is required" }),
+				type: z.union([z.literal("credit"), z.literal("debit")]),
 			});
 
-			const { title } = createTransactionBody.parse(req.body);
+			const { title, amount, type } = createTransactionBodySchema.parse(
+				req.body,
+			);
 
-			await createTransactionUseCase.execute({ title });
+			const amountBasedOnType = type === "credit" ? amount : amount * -1;
 
-			return res.send({ message: "Transaction created" });
+			await createTransactionUseCase.execute({
+				title,
+				amount: amountBasedOnType,
+				type,
+			});
+
+			return res
+				.status(201)
+				.send({ message: "Transaction created", code: 201 });
 		} catch (err: any) {
 			handleError({ res, err });
 		}

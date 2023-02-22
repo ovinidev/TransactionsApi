@@ -4,6 +4,8 @@ export interface TransactionViewModelProps {
 	title: string;
 	createdAt?: Date;
 	id?: string;
+	amount: number;
+	type: string;
 }
 
 export class TransactionViewModel {
@@ -12,6 +14,8 @@ export class TransactionViewModel {
 			title: transaction.title,
 			createdAt: transaction.props.createdAt,
 			id: transaction.props.id,
+			type: transaction.props.type,
+			amount: transaction.props.amount,
 		};
 	}
 }

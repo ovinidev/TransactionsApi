@@ -5,7 +5,6 @@ specifiers:
   '@types/node': ^18.14.0
   '@typescript-eslint/eslint-plugin': ^5.52.0
   '@typescript-eslint/parser': ^5.52.0
-  dotenv: ^16.0.3
   eslint: ^8.34.0
   fastify: ^4.13.0
   prisma: ^4.10.1
@@ -16,7 +15,6 @@ specifiers:
   zod: ^3.20.6
 
 dependencies:
-  dotenv: 16.0.3
   fastify: 4.13.0
   prisma: 4.10.1
   reflect-metadata: 0.1.13
@@ -692,11 +690,6 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
-
-  /dotenv/16.0.3:
-    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
-    engines: {node: '>=12'}
-    dev: false
 
   /esbuild/0.17.9:
     resolution: {integrity: sha512-m3b2MR76QkwKPw/KQBlBJVaIncfQhhXsDMCFPoyqEOIziV+O7BAKqOYT1NbHsnFUX0/98CLWxUfM5stzh4yq4Q==}

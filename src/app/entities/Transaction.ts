@@ -1,6 +1,8 @@
 export interface TransactionProps {
 	id: string;
 	title: string;
+	amount: number;
+	type: string;
 	createdAt: Date;
 }
 
@@ -17,5 +19,21 @@ export class Transaction {
 
 	public set title(title: string) {
 		this.props.title = title;
+	}
+
+	public get amount(): number {
+		return this.props.amount;
+	}
+
+	public set amount(amount: number) {
+		this.props.amount = amount;
+	}
+
+	public get type(): string {
+		return this.props.type;
+	}
+
+	public set type(type: string) {
+		this.props.type = type;
 	}
 }

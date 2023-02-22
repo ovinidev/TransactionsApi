@@ -6,6 +6,8 @@ export class PrismaTransactionMapper {
 	static toPrisma(transaction: CreateTransactionDto) {
 		return {
 			title: transaction.title,
+			amount: transaction.amount,
+			type: transaction.type,
 		};
 	}
 
@@ -14,6 +16,8 @@ export class PrismaTransactionMapper {
 			title: raw.title,
 			id: raw.id,
 			createdAt: raw.created_at,
+			amount: raw.amount,
+			type: raw.type,
 		});
 	}
 }

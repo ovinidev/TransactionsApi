@@ -1,16 +1,13 @@
 import "reflect-metadata";
 import "./infra/http/container";
 import fastify from "fastify";
-import { FindTransactionsController } from "./infra/http/controllers/FindTransactionsController";
-import { CreateTransactionController } from "./infra/http/controllers/CreateTransactionController";
+import { transactionRoutes } from "./infra/http/routes";
 
 const app = fastify();
 
-const findTransactionsController = new FindTransactionsController();
-app.get("/transactions", findTransactionsController.handle);
-
-const createTransactionController = new CreateTransactionController();
-app.post("/transactions", createTransactionController.handle);
+app.register(transactionRoutes, {
+	prefix: "transactions",
+});
 
 app
 	.listen({
