@@ -4,6 +4,7 @@ export interface TransactionProps {
 	amount: number;
 	type: string;
 	createdAt: Date;
+	sessionId: string;
 }
 
 export class Transaction {

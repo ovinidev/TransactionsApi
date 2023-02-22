@@ -1,8 +1,10 @@
+import { FastifyReply } from "fastify";
 import { z } from "zod";
+import { AppError } from "../../app/errors/appError";
 
 interface handleErrorProps {
 	err: any;
-	res: any;
+	res: FastifyReply;
 }
 
 export function handleError({ err, res }: handleErrorProps) {
@@ -12,6 +14,11 @@ export function handleError({ err, res }: handleErrorProps) {
 			message: error,
 		});
 	}
+
+	if (err instanceof AppError) {
+		res.status(err.code).send(err.message);
+	}
+
 	return res.status(400).send({
 		message: err.message,
 	});

@@ -13,4 +13,5 @@ model Transaction {
   amount     Int
   type       String
   created_at DateTime @default(now())
+  session_id String
 }

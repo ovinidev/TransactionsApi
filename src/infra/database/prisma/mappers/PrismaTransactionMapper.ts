@@ -8,6 +8,7 @@ export class PrismaTransactionMapper {
 			title: transaction.title,
 			amount: transaction.amount,
 			type: transaction.type,
+			session_id: transaction.sessionId,
 		};
 	}
 
@@ -18,6 +19,7 @@ export class PrismaTransactionMapper {
 			createdAt: raw.created_at,
 			amount: raw.amount,
 			type: raw.type,
+			sessionId: raw.session_id,
 		});
 	}
 }

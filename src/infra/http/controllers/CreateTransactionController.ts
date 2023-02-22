@@ -1,11 +1,23 @@
+import { randomUUID } from "crypto";
 import { container } from "tsyringe";
 import { z } from "zod";
 import { CreateTransactionUseCase } from "../../../app/useCases/CreateTransactionUseCase copy";
-import { handleError } from "../../errors/zodError";
+import { handleError } from "../../errors/handleError";
 
 export class CreateTransactionController {
 	async handle(req: any, res: any) {
 		try {
+			let sessionId: string = req.cookies.sessionId;
+
+			if (!sessionId) {
+				sessionId = randomUUID();
+
+				res.cookie("sessionId", sessionId, {
+					path: "/",
+					maxAge: 1000 * 60 * 60 * 24, // 1 day
+				});
+			}
+
 			const createTransactionUseCase = container.resolve(
 				CreateTransactionUseCase,
 			);
@@ -26,12 +38,13 @@ export class CreateTransactionController {
 				title,
 				amount: amountBasedOnType,
 				type,
+				sessionId,
 			});
 
 			return res
 				.status(201)
 				.send({ message: "Transaction created", code: 201 });
-		} catch (err: any) {
+		} catch (err) {
 			handleError({ res, err });
 		}
 	}

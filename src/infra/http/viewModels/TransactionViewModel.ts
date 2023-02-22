@@ -2,10 +2,11 @@ import { Transaction } from "../../../app/entities/Transaction";
 
 export interface TransactionViewModelProps {
 	title: string;
-	createdAt?: Date;
-	id?: string;
+	createdAt: Date;
+	id: string;
 	amount: number;
 	type: string;
+	sessionId: string;
 }
 
 export class TransactionViewModel {
@@ -16,6 +17,7 @@ export class TransactionViewModel {
 			id: transaction.props.id,
 			type: transaction.props.type,
 			amount: transaction.props.amount,
+			sessionId: transaction.props.sessionId,
 		};
 	}
 }
