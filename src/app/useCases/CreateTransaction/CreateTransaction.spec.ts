@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { beforeAll, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 import { TransactionRepositoryInMemory } from "../../../../test/repositories/TransactionRepositoryInMemory";
 import { Transaction } from "../../entities/Transaction";
 import { TransactionRepository } from "../../repositories/TransactionRepository";
@@ -7,7 +7,7 @@ import { TransactionRepository } from "../../repositories/TransactionRepository"
 describe("Create transaction", () => {
 	let transactionRepository: TransactionRepository;
 
-	beforeAll(() => {
+	beforeEach(() => {
 		transactionRepository = new TransactionRepositoryInMemory();
 	});
 
