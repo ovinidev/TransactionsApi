@@ -10,7 +10,6 @@ export async function transactionRoutes(app: FastifyInstance) {
 	app.post("/", createTransactionController.handle);
 
 	const findTransactionsController = new FindTransactionsController();
-
 	app.get(
 		"/",
 		{ preHandler: [checkSessionIdExist] },
